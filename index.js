@@ -1,36 +1,29 @@
-// Code your solution in this file!
-function logDriverNames(arr) {
-  arr.forEach(function(el){ console.log(el.name) })
+function logDriverNames(drivers) {
+  drivers.forEach((d)=> console.log(d.name))
 }
 
-function logDriversByHometown(arr, hometown) {
-  arr.forEach(function (el) {
-    if (el.hometown === hometown) {
-      console.log(el.name)
-    }
-  })
+function logDriversByHometown(drivers, howmtown){
+  drivers.filter((d)=> d.hometown == howmtown).forEach((d)=> console.log(d.name))
 }
 
-
-function driversByRevenue(arr) {
-    return arr.slice().sort(function (driver1, driver2) {
-      return driver1.revenue - driver2.revenue
-  })
+function driversByRevenue(drivers) {
+ let newD = [...drivers]
+ let newArr = newD.sort((a, b)=> a.revenue -b.revenue)
+ return newArr
 }
 
-function driversByName(arr) {
-  return arr.slice().sort(function (driver1,driver2) {
-    return driver1.name.localeCompare(driver2.name)
-  })
+function driversByName(drivers) {
+ let newD = [...drivers]
+ let newArr = newD.sort((a, b)=> a.name.localeCompare(b.name))
+ return newArr
 }
 
-function totalRevenue(arr) {
-  const reduceRevenue = function (ags,elo) {
-    return  ags + elo.revenue
-  }
-  return arr.reduce(reduceRevenue,0)
+function totalRevenue(drivers){
+    return drivers.reduce(function(agg, el){
+      return agg + el.revenue
+  },0)
 }
 
-function averageRevenue(arr) {
-    return totalRevenue(arr) / arr.length
+function averageRevenue(drivers){
+  return totalRevenue(drivers)/drivers.length
 }
